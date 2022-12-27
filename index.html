@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image slider</title>
+    <script src="jquery.js"></script>
+    <style>
+        body{
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(to top,black,rgb(36, 35, 38));
+        }
+        .main_div{
+            border-radius: 20px;
+            background-image: linear-gradient(to right,#061033,rgb(97, 97, 213));
+            width: 80vw;
+            height: 80vh;
+            overflow-x: scroll;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 10px;
+            transition: 0.8s ease-in-out;
+            scroll-behavior: smooth;
+            /* scroll-snap-type: x proximity; */
+        }
+        .main_div::-webkit-scrollbar{display: none;}
+        .image{
+            border-radius: 20px;
+            transition: 0.7s ease-in-out;
+            width: 330px;
+            height: 70%;
+            object-fit: cover;
+            object-position: left;
+            background-color: black;
+            scroll-snap-align: center;
+        }
+        .img_0,.img_9{opacity: 0;}
+        .left_button,.right_button{
+            position: fixed;
+            height: 100px;
+            width: 80px;
+            color: black;
+            background-color: rgba(128, 128, 128, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+        }
+        .navigators{
+            width: 50%;
+            height: 40px;
+            position: fixed;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 2%;
+            justify-content: center;
+            bottom: 10vh;
+            /* background-color: transparent; */
+        }
+        .nav{
+            color: grey;
+            font-size: 10px;
+            transition: 0.8s;
+        }
+        .left_button{
+            border-radius: 0 50% 50% 0;
+            transition: 1s;
+            left: 10vw;
+        }
+        .right_button{
+            border-radius: 50% 0 0 50%;
+            transition: 1s;
+            right: 10vw;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="main_div">
+        <div class="left_button"> <i class="fa fa-chevron-left" aria-hidden="true"></i> </div>
+        <img src="image.jpg" alt="image" class="image img_0">
+        <img src="image.jpg" alt="image" class="image img_1">
+        <img src="image.jpg" alt="image" class="image img_2">
+        <img src="image.jpg" alt="image" class="image img_3">
+        <img src="image.jpg" alt="image" class="image img_4">
+        <img src="image.jpg" alt="image" class="image img_5">
+        <img src="image.jpg" alt="image" class="image img_6">
+        <img src="image.jpg" alt="image" class="image img_7">
+        <img src="image.jpg" alt="image" class="image img_8">
+        <img src="image.jpg" alt="image" class="image img_9"></div>
+        <div class="right_button"> <i class="fa fa-chevron-right" aria-hidden="true"></i> </div>
+        <div class="navigators">
+            <div class="nav nav_1"> <i class="fa fa-circle" aria-hidden="true"></i> </div>
+            <div class="nav nav_2"> <i class="fa fa-circle" aria-hidden="true"></i> </div>
+            <div class="nav nav_3"> <i class="fa fa-circle" aria-hidden="true"></i> </div>
+            <div class="nav nav_4"> <i class="fa fa-circle" aria-hidden="true"></i> </div>
+            <div class="nav nav_5"> <i class="fa fa-circle" aria-hidden="true"></i> </div>
+            <div class="nav nav_6"> <i class="fa fa-circle" aria-hidden="true"></i> </div>
+            <div class="nav nav_7"> <i class="fa fa-circle" aria-hidden="true"></i> </div>
+            <div class="nav nav_8"> <i class="fa fa-circle" aria-hidden="true"></i> </div>
+        </div>
+    </div>
+    <script>
+        var left_button = document.querySelector('.left_button');
+        var right_button = document.querySelector('.right_button');
+        var main_div = document.querySelector('.main_div');
+        // var image = document.getElementsByClassName('image');
+
+        main_div.addEventListener('scroll', function()
+        {
+            // console.log(parseInt(main_div.scrollLeft));
+
+            if(main_div.scrollLeft >= 0 && main_div.scrollLeft <= 340)
+            {
+                // console.log('y');
+                $('.img_1').css({'width' : '400px','height' : '400px','object-position' : 'top',});
+                $('.img_2,.img_3,.img_4,.img_5,.img_6,.img_7,.img_8,.img_9').css({'width':'330px','height':'300px'}); 
+                $('.nav_1').css({'font-size':'20px'});
+                $('.nav_2,.nav_3,.nav_4,.nav_5,.nav_6,.nav_7,.nav_8').css({'font-size':'10px'});
+            }
+            if(main_div.scrollLeft >= 340 && main_div.scrollLeft <= 680)
+            {
+                // console.log('y');
+                $('.img_2').css({'width':'400px','height':'400px','object-position' : 'top'});
+                $('.img_1,.img_3,.img_4,.img_5,.img_6,.img_7,.img_8,.img_9').css({'width':'330px','height':'300px'}); 
+                $('.nav_2').css({'font-size':'20px'});
+                $('.nav_1,.nav_3,.nav_4,.nav_5,.nav_6,.nav_7,.nav_8').css({'font-size':'10px'});
+            }
+            if(main_div.scrollLeft >= 680 && main_div.scrollLeft <= 1020)
+            {
+                // console.log('y');
+                $('.img_3').css({'width':'400px','height':'400px','object-position' : 'top'});
+                $('.img_2,.img_1,.img_4,.img_5,.img_6,.img_7,.img_8,.img_9').css({'width':'330px','height':'300px'});
+                $('.nav_3').css({'font-size':'20px'});
+                $('.nav_1,.nav_2,.nav_4,.nav_5,.nav_6,.nav_7,.nav_8').css({'font-size':'10px'});
+            }
+            if(main_div.scrollLeft >= 1020 && main_div.scrollLeft <= 1360)
+            {
+                // console.log('y');
+                $('.img_4').css({'width':'400px','height':'400px','object-position' : 'top'});
+                $('.img_2,.img_3,.img_1,.img_5,.img_6,.img_7,.img_8,.img_9').css({'width':'330px','height':'300px'}); 
+                $('.nav_4').css({'font-size':'20px'});
+                $('.nav_1,.nav_2,.nav_3,.nav_5,.nav_6,.nav_7,.nav_8').css({'font-size':'10px'});
+            }
+            if(main_div.scrollLeft >= 1360 && main_div.scrollLeft <= 1700)
+            {
+                // console.log('y');
+                $('.img_5').css({'width':'400px','height':'400px','object-position' : 'top'});
+                $('.img_2,.img_3,.img_4,.img_1,.img_6,.img_7,.img_8,.img_9').css({'width':'330px','height':'300px'});
+                $('.nav_5').css({'font-size':'20px'});
+                $('.nav_1,.nav_2,.nav_3,.nav_4,.nav_6,.nav_7,.nav_8').css({'font-size':'10px'});
+            }
+            if(main_div.scrollLeft >= 1700 && main_div.scrollLeft <= 2040)
+            {
+                // console.log('y');
+                $('.img_6').css({'width':'400px','height':'400px','object-position' : 'top'});
+                $('.img_2,.img_3,.img_4,.img_5,.img_1,.img_7,.img_8,.img_9').css({'width':'330px','height':'300px'});
+                $('.nav_6').css({'font-size':'20px'});
+                $('.nav_1,.nav_2,.nav_3,.nav_4,.nav_5,.nav_7,.nav_8').css({'font-size':'10px'}); 
+            }
+            if(main_div.scrollLeft >= 2040 && main_div.scrollLeft <= 2380)
+            {
+                // console.log('y');
+                $('.img_7').css({'width':'400px','height':'400px','object-position' : 'top'});
+                $('.img_2,.img_3,.img_4,.img_5,.img_6,.img_1,.img_8,.img_9').css({'width':'330px','height':'300px'});
+                $('.nav_7').css({'font-size':'20px'});
+                $('.nav_1,.nav_2,.nav_3,.nav_4,.nav_5,.nav_6,.nav_8').css({'font-size':'10px'});
+            }
+            if(main_div.scrollLeft >=2380 && main_div.scrollLeft <= 2720)
+            {
+                // console.log('y');
+                $('.img_8').css({'width':'400px','height':'400px','object-position' : 'top'});
+                $('.img_2,.img_3,.img_4,.img_5,.img_6,.img_7,.img_1,.img_9').css({'width':'330px','height':'300px'});
+                $('.nav_8').css({'font-size':'20px'});
+                $('.nav_1,.nav_2,.nav_3,.nav_4,.nav_5,.nav_6,.nav_7').css({'font-size':'10px'}); 
+            }
+        }
+        
+        )
+        right_button.addEventListener('click',function()
+        {
+            main_div.scrollLeft += 340;
+        }
+        )
+        left_button.addEventListener('click',function()
+        {
+            main_div.scrollLeft -= 340;
+        }
+        )
+    </script>
+</body>
+</html>
